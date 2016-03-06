@@ -1,0 +1,1 @@
+CREATE TABLE Orders (Id integer, Name varchar(250), DefaultPrice decimal(18,2));
