@@ -1,6 +1,5 @@
 package org.gjoko.javabrains;
 
-import org.gjoko.javabrains.dao.HibernateDaoImpl;
 import org.gjoko.javabrains.dao.NamedParameterJdbcTemplateImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
