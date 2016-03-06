@@ -3,7 +3,6 @@ package org.gjoko.javabrains;
 import org.gjoko.javabrains.dao.NamedParameterJdbcTemplateImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 public class jdbcDemo {
 
