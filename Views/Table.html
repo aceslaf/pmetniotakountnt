@@ -1,0 +1,171 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+</head>
+
+<div data-ng-app="TestModule" data-ng-controller="TestController" class="container">
+    <form>
+        <div class="row">
+            <div class="col-xs-8"><input type="text" class="form-control" id="inputEmail1" placeholder="Email"></div>
+        </div>
+    </form>
+    <form role="form">
+        <div data-ng-repeat="order in orders" class="row">
+            <div class="col-xs-3"><label>order.Name</label></div>
+            <div class="col-xs-3"><label>order.Price</label></div>
+        </div>
+    </form>
+</div>
+<body>
+ 
+</body>
+<script>
+	
+    (function () {
+        angular
+        .module('testModule')
+        .controller('TestController', ['$scope'], function ($scope) {
+            var orders = [];
+            for (var i = 0; i < 10; i++) {
+                var order = {};
+                order.Id = i;
+                order.Name = i;
+                order.Subsidy = '';
+                order.Price = '';
+            }
+            $scope.orders = orders;
+        });
+    })();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('waiterModule')
+        .controller('WaiterController', ['$http', '$filter', '$q', '$modal', 'ngToast', WaiterController]);
+
+    //constants
+    var TableBaseUrl = "/table";
+
+    function WaiterController($http, $filter, $q, $modal, ngToast) {
+
+        var vm = this;
+        var requestIsPending = false;
+        var orders = [];
+
+        function AddOrder(order) {
+            startRequest();
+            $http.post(TableBaseUrl + '/Add',order)
+            .success(function (response) {
+                orders.push(response);
+            })
+            .error(function (response) {
+                $ngToast.warning(response);
+            })
+            .finally(endRequest);
+        }
+
+        function Init(table)
+        {
+            startRequest();
+            $http.post(TableBaseUrl, table.id)
+           .success(function (response) {
+               var index = orders.find(function (elem) {
+                   return elem.id === order.id;
+               })
+
+               if (index >= 0 && index < orders.length) {
+                   orders.splice(index, 1);
+                   return;
+               }
+
+               $ngToast.warning("Something went wrong");
+           })
+           .error(function (response) {
+               $ngToast.warning(response);
+           })
+            .finally(endRequest);
+            orders.push({id:123,})
+        }
+        
+        function RemoveOrder(order)
+        {
+            startRequest();
+            $http.post(TableBaseUrl + '/Remove', order.id)
+           .success(function (response) {
+               var index = orders.find(function (elem){
+                   return elem.id === order.id;
+               })
+
+               if (index >= 0 && index<orders.length)
+               {
+                   orders.splice(index, 1);
+                   return;
+               }
+
+               $ngToast.warning("Something went wrong");
+           })
+           .error(function (response) {
+               $ngToast.warning(response);
+           })
+           .finally(endRequest);
+        }
+
+        function EditOrder(order) {
+            startRequest();
+            $http.post(TableBaseUrl + '/Edit', order)
+           .success(function (response) {
+               var index = orders.find(function (elem) {
+                   return elem.id === order.id;
+               })
+
+               if (index >= 0 && index < orders.length) {
+                   orders[index] = response;
+                   return;
+               }
+
+               $ngToast.warning("Something went wrong");
+           })
+           .error(function (response) {
+               $ngToast.warning(response);
+           })
+           .finally(endRequest);
+        }
+
+        function startRequest() {
+            requestIsPending = true;
+        }
+
+        function endRequest() {
+            requestIsPending = false;
+        }
+
+        Init(1);
+        vm.orders = orders;
+        vm.addOrder = AddOrder;
+        vm.removeOrder = RemoveOrder;
+        vm.editRoder = EditOrder;
+        vm.isReqPening = function () {
+            return requestIsPending;
+        }
+
+    }
+})();
+
+</script>
+</html>
