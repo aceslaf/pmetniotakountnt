@@ -1,6 +1,5 @@
 package com.startsmart.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,79 +16,50 @@ import com.startsmart.model.dao.ProductDao;
 import com.startsmart.model.pojo.Product;
 
 @Controller
-public class ProductController {
+public class ProductsController {
 
 	@Autowired
 	ProductDao productDao;
-	
+
 	@RequestMapping(value = "/product/create", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void createProduct(@RequestBody Product product) {
-
-		try {
-			productDao.createProduct(product);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		productDao.createProduct(product);
 	}
 
 	@RequestMapping(value = "/product/{productId}", method = RequestMethod.GET)
 	@ResponseBody
 	public Product getProductById(@PathVariable int productId) {
-
-		Product product = null;
-		try {
-			product = productDao.getProductById(productId);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		final Product product;
+		product = productDao.getProductById(productId);
 		return product;
 	}
 
 	@RequestMapping(value = "/product/all", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Product> getAllProducts() {
-		
-		List<Product> allProducts = null;
-		try {
-			allProducts = productDao.getAllProducts();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		final List<Product> allProducts;
+		allProducts = productDao.getAllProducts();
 		return allProducts;
 	}
-	
+
 	@RequestMapping(value = "/product/allActive", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Product> getAllActiveProducts() {
-		
-		List<Product> allActiveProducts = null;
-		try {
-			allActiveProducts = productDao.getAllActiveProducts();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		final List<Product> allActiveProducts;
+		allActiveProducts = productDao.getAllActiveProducts();
 		return allActiveProducts;
 	}
-	
+
 	@RequestMapping(value = "/product/update", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void updateProduct(@RequestBody Product product) {
-		
-		try {
-			productDao.updateProduct(product);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		productDao.updateProduct(product);
 	}
-	
+
 	@RequestMapping(value = "/product/delete/{productId}", method = RequestMethod.GET)
 	@ResponseBody
 	public void deleteProduct(@PathVariable int productId) {
-		try {
-			productDao.deleteProduct(productId);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		productDao.deleteProduct(productId);
 	}
 }

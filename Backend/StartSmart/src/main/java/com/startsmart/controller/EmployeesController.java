@@ -1,6 +1,5 @@
 package com.startsmart.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,52 +21,48 @@ public class EmployeesController {
 	@Autowired
 	EmployeeDao employeeDao;
 
-	@RequestMapping(value = "/getEmployeeById/{employeeId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/employee/create", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void createNewEmployee(@RequestBody Employee employee) {
+		employeeDao.createEmployee(employee);
+	}
+
+	@RequestMapping(value = "/employee/{employeeId}", method = RequestMethod.GET)
 	@ResponseBody
 	public Employee getEmployeeById(@PathVariable int employeeId) {
-
 		Employee employee = null;
-		try {
-			employee = employeeDao.getEmployeeById(employeeId);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		employee = employeeDao.getEmployee(employeeId);
 		return employee;
 	}
 
-	@RequestMapping(value = "/getAllActiveEmployees", method = RequestMethod.GET)
+	@RequestMapping(value = "/employee/{employeeUsername}/{employeePassword}", method = RequestMethod.GET)
+	@ResponseBody
+	public Employee getEmployeeByUsernameAndPassword(@PathVariable String employeeUsername,
+			@PathVariable String employeePassword) {
+		return employeeDao.getEmployee(employeeUsername, employeePassword);
+	}
+
+	@RequestMapping(value = "/employee/all", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Employee> getAllEmployees() {
+		return employeeDao.getAllEmployees();
+	}
+
+	@RequestMapping(value = "/employee/allActive", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Employee> getAllActiveEmployees() {
-		
-		List<Employee> activeEmployees = null;
-		try {
-			activeEmployees = employeeDao.getAllActiveEmployees();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return activeEmployees;
+		return employeeDao.getAllActiveEmployees();
 	}
 
-	@RequestMapping(value = "/insertNewEmployee", method = RequestMethod.POST)
+	@RequestMapping(value = "/employee/update", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void createNewEmployee(@RequestBody Employee employee) {
-
-		try {
-			employeeDao.createNewEmplyee(employee);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@RequestMapping(value = "/updateEmloyeeRole/{employeeId}/{roleId}", method = RequestMethod.GET)
-	@ResponseStatus(value = HttpStatus.OK)
-	public void updateUserRole(@PathVariable int employeeId, @PathVariable int roleId) {
-		
-		try {
-			employeeDao.updateRoleOfUser(employeeId, roleId);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public void updateUserRole(@RequestBody Employee employee) {
+		employeeDao.updateEmployee(employee);
 	}
 
+	@RequestMapping(value = "/employee/delete/{employeeId}", method = RequestMethod.GET)
+	@ResponseBody
+	public void deleteEmployee(@PathVariable int employeeId) {
+		employeeDao.deleteEmployee(employeeId);
+	}
 }

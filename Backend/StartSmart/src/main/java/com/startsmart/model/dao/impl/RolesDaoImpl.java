@@ -1,65 +1,64 @@
 package com.startsmart.model.dao.impl;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.startsmart.model.dao.RoleDao;
-import com.startsmart.model.dao.dbmanager.DBConnection;
+import com.startsmart.model.dao.hibernate.StartSmartSessionFactory;
 import com.startsmart.model.pojo.Role;
 
 @Component
 public class RolesDaoImpl implements RoleDao {
-	
+
 	@Autowired
-	private DBConnection dbConnection;
+	private StartSmartSessionFactory sessionFactory;
 
 	@Override
-	public Role getRoleById(int roleId) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public void createRole(Role role) {
+		sessionFactory.getSession().save(role);
 	}
 
 	@Override
-	public void insertRole(Role role) throws SQLException {
-		String sql = "INSERT INTO ROLES VALUES(?, ? ,?)";
-		PreparedStatement preparedStatement = dbConnection.getInstance().prepareStatement(sql);
-		preparedStatement.setInt(1, role.getRoleId());
-		preparedStatement.setString(2, role.getRoleName());
-		preparedStatement.setString(3, role.getRoleStatus());
-		preparedStatement.execute();
+	public Role getRoleById(int roleId) {
+		sessionFactory.getSession().beginTransaction();
+		final Role role = (Role) sessionFactory.getSession().get(Role.class, roleId);
+		sessionFactory.getSession().getTransaction().commit();
+		return role;
 	}
 
 	@Override
-	public void deleteRole(int roleId) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	@SuppressWarnings("unchecked")
+	public List<Role> getAllRoles() {
+		String hql = "from ROLES";
+		sessionFactory.getSession().beginTransaction();
+		final List<Role> roles = (List<Role>) sessionFactory.getSession().createQuery(hql).list();
+		sessionFactory.getSession().getTransaction().commit();
+		return roles;
 	}
 
 	@Override
-	public void deleteRole(Role role) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	@SuppressWarnings("unchecked")
+	public List<Role> getAllActiveRoles() {
+		String hql = "from ROLES where STATUS = 1";
+		sessionFactory.getSession().beginTransaction();
+		final List<Role> roles = (List<Role>) sessionFactory.getSession().createQuery(hql).list();
+		sessionFactory.getSession().getTransaction().commit();
+		return roles;
 	}
 
 	@Override
-	public void modifyRole(int roleId) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void updateRole(Role role) {
+		sessionFactory.getSession().update(role);
 	}
 
 	@Override
-	public void insertRights(int roleId, int[] rights) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteRights(int roleId, int[] rights) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void deleteRole(int roleId) {
+		Role role = new Role();
+		role.setRoleId(roleId);
+		sessionFactory.getSession().delete(role);
 	}
 
 }

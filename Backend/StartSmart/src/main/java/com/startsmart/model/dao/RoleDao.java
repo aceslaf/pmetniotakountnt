@@ -1,22 +1,20 @@
 package com.startsmart.model.dao;
 
-import java.sql.SQLException;
+import java.util.List;
 
 import com.startsmart.model.pojo.Role;
 
 public interface RoleDao {
 
-	public Role getRoleById(int roleId) throws SQLException;
+	public void createRole(Role role);
 
-	public void insertRole(Role role) throws SQLException;
+	public Role getRoleById(int roleId);
 
-	public void deleteRole(int roleId) throws SQLException;
+	public List<Role> getAllRoles();
 
-	public void deleteRole(Role role) throws SQLException;
+	public List<Role> getAllActiveRoles();
 
-	public void modifyRole(int roleId) throws SQLException;
-	
-	public void insertRights(int roleId, int[] rights) throws SQLException;
-	
-	public void deleteRights(int roleId, int[] rights) throws SQLException;
+	public void deleteRole(int roleId);
+
+	public void updateRole(Role role);
 }
