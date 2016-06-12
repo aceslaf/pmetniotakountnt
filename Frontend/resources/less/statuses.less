@@ -1,0 +1,98 @@
+.usrStatus {
+  position: relative;
+  display: inline-block;
+  margin: 5px 3px;
+  width: @status-button-width;
+  height: @status-button-height;
+  text-align: center;
+  border-radius: @status-border-radius;
+  background-color: @status-def-color;
+  font-size: 16px;
+  font-weight: bold;
+  .DropShadow(3px, rgba(0, 0, 0, 0.2), 0);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.naStatus {
+  .StatusInactive(@na-button-image-url, @na-button-color);
+}
+
+.busyStatus {
+  .StatusInactive(@busy-button-image-url, @busy-button-color);
+}
+
+.onlineStatus {
+  .StatusInactive(@online-button-image-url, @online-button-color);
+}
+
+.naStatusActive {
+  .StatusActive(@na-button-color);
+}
+
+.mirrorStatus {
+  .StatusActive(@na-button-color);
+  background: #fff;
+  color: #000;
+}
+
+.busyStatusActive {
+  .StatusActive(@busy-button-color);
+}
+
+.onlineStatusActive {
+  .StatusActive(@online-button-color);
+}
+/* Status loader */
+@loader_width: 100px;
+
+.loader {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  zoom: 0.3;
+}
+
+.circular {
+  animation: slidein 2s ease-in-out, rotate 0.8s linear infinite;
+  height: @loader_width;
+  position: relative;
+  width: @loader_width;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes slidein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

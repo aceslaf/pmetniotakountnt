@@ -1,0 +1,14 @@
+node_modules/
+bower_components/
+build/
+.idea/
+node_modules/
+dist/
+
+# Eclipse Project Files #
+
+.classpath
+.project
+.settings
+bin/
+.jshintrc

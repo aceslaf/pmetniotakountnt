@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans http://www.springframework.org/schema/security"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 
 	<!-- Auto scan the components -->
-	
+	<context:annotation-config />
+	<context:component-scan base-package="com.startsmart" />
+
 	<mvc:annotation-driven />
 	<mvc:cors>
 		<mvc:mapping path="/**" allowed-origins="*" />
 	</mvc:cors>
-	
-	<context:annotation-config />
-	<context:component-scan base-package="com.startsmart" />
 
+	<http auto-config='true'>
+		<intercept-url pattern="/**"/>
+	</http>
+	
+	
+	<authentication-manager>
+    <authentication-provider>
+      <user-service>
+        <user name="bob" password="bob" />
+      </user-service>
+    </authentication-provider>
+  </authentication-manager>
 </beans>

@@ -29,12 +29,12 @@ public class OrdersController {
 	public void createNewOrder(@RequestBody Order order) {
 		orderDao.createOrder(order);
 	}
-
+/*
 	@RequestMapping(value = "/order/{orderId}", method = RequestMethod.GET)
 	@ResponseBody
 	public Order getOrderById(@PathVariable int orderId) {
 		return orderDao.getOrderById(orderId);
-	}
+	}*/
 
 	@RequestMapping(value = "/order/all", method = RequestMethod.GET)
 	@ResponseBody
@@ -64,9 +64,9 @@ public class OrdersController {
 		orderDao.deleteOrder(orderId);
 	}
 
-	@MessageMapping("/queue/order/{userId}")
-	@SendTo("queue/order/{userId}")
-    public String makeOrder(@DestinationVariable int userId) throws Exception {
-		return "order made" + userId;
+	@MessageMapping("/order")
+	@SendTo("/queue/orders/2")
+    public String makeOrder(@RequestBody String a) throws Exception {
+		return a;
     }
 }

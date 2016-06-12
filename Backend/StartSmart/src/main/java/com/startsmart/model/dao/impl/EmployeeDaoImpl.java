@@ -3,7 +3,6 @@ package com.startsmart.model.dao.impl;
 import java.util.List;
 
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Autowired
 	private StartSmartSessionFactory sessionFactory;
-	
 
 	@Override
 	public void createEmployee(Employee employee) {
@@ -34,21 +32,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public Employee getEmployee(String username, String password) {
-		// TODO implement check of username and password
-		String hql = "from EMPLOYEES e where e.USERNAME = :username and e.PASSWORD = :password";
+		String hql = "from EMPLOYEES e where e.username = :username and e.password = :password";
 		sessionFactory.getSession().beginTransaction();
 		Query query = sessionFactory.getSession().createQuery(hql);
 		query.setString("username", username);
 		query.setString("password", password);
 		Employee employee = (Employee) query.uniqueResult();
 		sessionFactory.getSession().getTransaction().commit();
-		return employee;
+		return employee; 
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Employee> getAllActiveEmployees() {
-		String hql = "from EMPLOYEES where not EMPLOYEE_STATUS = 1";
+		String hql = "from EMPLOYEES where not STATUS = 1";
 		sessionFactory.getSession().beginTransaction();
 		final List<Employee> employee = (List<Employee>) sessionFactory.getSession().createQuery(hql).list();
 		sessionFactory.getSession().getTransaction().commit();
