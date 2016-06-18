@@ -1,4 +1,4 @@
-package com.startsmart;
+package com.startsmart.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.socket.AbstractSecurityWebSocketMessageBrokerConfigurer;

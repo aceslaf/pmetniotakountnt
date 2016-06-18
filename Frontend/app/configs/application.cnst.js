@@ -58,23 +58,12 @@
                 TERMINATING_STATE_MAX_TIMEOUT: 15000,
                 REACHABLE_TIMEOUT_MS: 3000
             },
-            HEAD_TRACKING: {
-                DETECTION_CYCLE_DURATION_MS: 40,
-                DETECTION_TIME_DURATION_MS: 1000,
-                DELAY_REDETECTING_ON_FAILURE_MS: 8000,
-                IMG_FORMAT: 'image/jpeg',
-                IMG_QUALITY: 0.9,
-                IMG_WIDTH: 352,
-                IMG_HEIGHT: 264,
-                DEFAULT_IMAGE_CENTER: 176,
-                WHITEBALANCE_MAX: 30
-            },
             VIDEO_SLIDER: {
                 SLIDER_HEIGHT: 5,
                 SLIDER_WIDTH_OFFSET: 3
             },
             AUTH_CLIENT:{
-                CLIENT_ID: 'd76a72d6-00cb-459e-b925-a7c009047eb4'
+                CLIENT_ID: ''
             }
         };
     }

@@ -6,16 +6,18 @@
 
     loginSrvc.$inject = [
         '$location',
-        '$http'
+        '$http',
+        'protocolResolver.srvc'
     ];
 
     function loginSrvc(
         $location,
-        $http
+        $http,
+        protocolResolverSrvc
     ) {
 
         var service = {
-            authenticate: authenticate
+            login: login
         };
 
         return service;
@@ -30,7 +32,8 @@
 
         }
 
-        function authenticateWebSocketSession() {
+        //TODO fix this when you get to sockets
+        /*function authenticateWebSocketSession() {
             var localUser = usersSrvc.getLocalUser();
             if (localUser) {
 
@@ -39,38 +42,27 @@
                 websocketSrvc.send(websocketData);
             }
 
+        }*/
+        function onSuccess(response) {
+            var user = response;
         }
 
-        function authenticate(credentials) {
-            $http.get(protocolResolver)
+        function onFailure(error) {
+        	var user = error;
         }
 
-        function successAuth(response) {
-            // Send request to backend to fetch the user, config params and initialize services on successful response
-            $http.get(protocolResolverSrvc.getBackendRestApiLocation() + backendUriCnst.LOGIN.AUTHENTICATE_USER).then(onSuccessfulResponse, onErrorResponse);
+        function login(credentials) {
+            $http.get(
+            		protocolResolverSrvc.getBackendRestApiUrl() + '/employee/b/b',
+            		{
+            			headers : {
+                			'content-type' : 'application/json',
+                			'Authorization' : 'Basic YTph'
+                	}
+            }).then(onSuccess(), onFailure());
         }
 
-        function onSuccessfulResponse(response) {
-            var user = response.data.user;
-            var configParams = response.data.configParams;
-            var localUser;
-            if (angular.isDefined(user, configParams)) {
-                configParamsSrvc.setConfigParams(configParams);
-                localUser = user;
-                usersSrvc.setLocalUser(localUser);
-                roomsSrvc.getRoomMemebers(user.id, user.roomId);
-                initialize();
-                $location.path("/dashboard");
-                if (typeof(Storage) !== undefined) {
-                    localStorage.setItem("username", user.id);
-                } else {
-                    $log.debug("no local storage support");
-                }
-            }
-        }
-
-        function onErrorResponse(error) {
-        }
+        
 
     }
 })();

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 (function() {
 	angular
@@ -15,14 +15,13 @@
 		environmentCnst
 	) {
 		var service = {
-				getBackendRestApiUrl: getBackendRestApiUrl,
-				getBackendWsApiUrl: getBackendWsApiUrl
+				getBackendRestApiUrl: getBackendRestApiUrl
 		}
 		
 		return service;
 		
 		function getBackendRestApiUrl() {
-			return $location.protocol + '://' + environmentCnst.BACKEND.REST;
+			return $location.protocol() + '://' + environmentCnst.BACKEND.REST;
 		}
 	}
 })();

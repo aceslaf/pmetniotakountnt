@@ -187,6 +187,7 @@ module.exports = function(grunt) {
                     'app/constants/*.js',
                     'app/configs/environment<%= env %>.cnst.js',
                     'app/configs/application.cnst.js',
+                    'app/configs/protocolResolver.srvc.js',
                     'app/objects/*.js',
                     'app/components/**/*.js',
                     'app/services/*.js',
@@ -275,7 +276,7 @@ module.exports = function(grunt) {
 
         tomcat_deploy: {
             war: 'build/Website.war',
-            host: 'localhost',
+            host: '192.168.1.124',
             login: 'tomcat',
             password: 'tomcat',
             // Here you can change your frontend deploy path

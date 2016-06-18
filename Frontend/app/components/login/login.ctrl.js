@@ -9,19 +9,21 @@
 	    'login.srvc', 
 	    'logout.srvc', 
 	    '$location',
-	    '$http'];
+	    '$http',
+	    '$scope'];
 
     function loginCtrl(loginSrvc, 
     	logoutSrvc, 
     	$location, 
-    	$http) {
+    	$http,
+    	$scope) {
     	
     	angular.extend(this, {
             login: login
         });
 
     	function login() {
-    		loginSrvc.authenticate
+    		loginSrvc.login($scope.credentials);
     		
     		$location.path('/homepage');
         }
