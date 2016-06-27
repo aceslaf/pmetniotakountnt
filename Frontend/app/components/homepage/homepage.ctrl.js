@@ -5,9 +5,12 @@
 		.module('Frontend')
 		.controller('homepage.ctrl', homepageCtrl);
 	
-	homepageCtrl.$inject = ['$location'];
+	homepageCtrl.$inject = [
+        '$location',
+        'users.srvc'
+        ];
 	
-	function homepageCtrl($location) {
+	function homepageCtrl($location, usersSrvc) {
 		angular.extend(this, {
 			changePassword : changePassword,
 			makeOrder : makeOrder,

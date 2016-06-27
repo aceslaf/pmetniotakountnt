@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.startsmart.model.dao.RoleDao;
-import com.startsmart.model.pojo.Role;
+import com.startsmart.model.dao.daomanagers.RoleDao;
+import com.startsmart.model.entities.Role;
 
 @Controller
 public class RolesController {

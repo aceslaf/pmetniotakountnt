@@ -276,7 +276,7 @@ module.exports = function(grunt) {
 
         tomcat_deploy: {
             war: 'build/Website.war',
-            host: '192.168.1.124',
+            host: '10.1.3.97',
             login: 'tomcat',
             password: 'tomcat',
             // Here you can change your frontend deploy path

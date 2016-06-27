@@ -10,19 +10,17 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.startsmart.model.dao.EmployeeDao;
-import com.startsmart.model.pojo.Employee;
+import com.startsmart.model.dao.daomanagers.EmployeeDao;
+import com.startsmart.model.entities.Employee;
 
-@Service("userDetailsService")
-@Transactional(readOnly = true)
 public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Autowired
-	EmployeeDao employeeDao;
+	private EmployeeDao employeeDao;
 
+	@Transactional(readOnly = true)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Employee employee = employeeDao.getEmployeeByUsername(username);
@@ -30,9 +28,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 		return buildUserForAuthentication(employee, authorities);
 	}
-	
-	private UserDetails buildUserForAuthentication(Employee employee, List<GrantedAuthority> authorities) {
-		User user = new User(String.valueOf(employee.getId()), employee.getPassword(), authorities);
-		return user;
+
+	private User buildUserForAuthentication(Employee employee, List<GrantedAuthority> authorities) {
+		return new User(String.valueOf(employee.getId()) , employee.getPassword(), authorities);
 	}
 }

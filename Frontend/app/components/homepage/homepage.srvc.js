@@ -6,14 +6,17 @@
 	
 	homepageSrvc.$inject = [
 	    '$location',
-	    '$http'
+	    '$http',
+	    'users.srvc'
 	];
 	
 	function homepageSrvc(
 			$location,
-			$http
+			$http,
+			usersSrvc
 	) {
 		var service = {
+			
 		};
 		return service;
 	}

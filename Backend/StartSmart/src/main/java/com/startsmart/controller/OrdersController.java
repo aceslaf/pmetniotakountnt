@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -15,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.startsmart.model.dao.OrderDao;
-import com.startsmart.model.pojo.Order;
+import com.startsmart.model.dao.daomanagers.OrderDao;
+import com.startsmart.model.dto.messagemodels.OrderMM;
+import com.startsmart.model.entities.Order;
 
 @Controller
 public class OrdersController {
@@ -26,7 +26,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "/order/create", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void createNewOrder(@RequestBody Order order) {
+	public void createNewOrder(@RequestBody OrderMM order) {
 		orderDao.createOrder(order);
 	}
 /*
@@ -54,7 +54,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "/order/update", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void updateOrder(@RequestBody Order order) {
+	public void updateOrder(@RequestBody OrderMM order) {
 		orderDao.updateOrder(order);
 	}
 

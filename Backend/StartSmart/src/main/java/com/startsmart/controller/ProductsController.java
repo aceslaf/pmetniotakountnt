@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.startsmart.model.dao.ProductDao;
-import com.startsmart.model.pojo.Product;
+import com.startsmart.model.dao.daomanagers.ProductDao;
+import com.startsmart.model.entities.Product;
 
 @Controller
 public class ProductsController {

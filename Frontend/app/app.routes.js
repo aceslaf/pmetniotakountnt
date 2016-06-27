@@ -47,10 +47,10 @@
 					requiresLogin: true
 				}
 			})
-			.when('/help', {
-				templateUrl: 'app/components/helpPage/helpPage.tmpl.html',
+			.when('/register', {
+				templateUrl: 'app/components/register/register.tmpl.html',
 				access: {
-					requiresLogin: true
+					requiresLogin: false
 				}
 			})
 			.otherwise({
