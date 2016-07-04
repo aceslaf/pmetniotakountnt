@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.startsmart.model.dao.daomanagers.ProductDao;
+import com.startsmart.model.dto.messagemodels.ProductMM;
 import com.startsmart.model.entities.Product;
 
 @Controller
@@ -23,8 +24,10 @@ public class ProductsController {
 
 	@RequestMapping(value = "/product/create", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void createProduct(@RequestBody Product product) {
-		productDao.createProduct(product);
+	@ResponseBody
+	public Integer createProduct(@RequestBody ProductMM product) {
+		Product prod = new Product(product);
+		return productDao.createProduct(prod);
 	}
 
 	@RequestMapping(value = "/product/{productId}", method = RequestMethod.GET)

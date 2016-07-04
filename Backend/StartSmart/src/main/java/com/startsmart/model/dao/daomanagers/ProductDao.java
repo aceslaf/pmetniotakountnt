@@ -6,7 +6,7 @@ import com.startsmart.model.entities.Product;
 
 public interface ProductDao {
 
-	public void createProduct(Product product);
+	public Integer createProduct(Product product);
 
 	public Product getProductById(int productId);
 

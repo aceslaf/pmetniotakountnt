@@ -18,29 +18,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class OrderItem {
 
-	@JsonProperty("ORDER_ITEM_ID")
 	@Id
 	@GeneratedValue
 	@Column(name="ORDER_ITEM_ID")
 	private int orderItemId;
 	
-	@JsonProperty("ORDER_ID")
 	@Column(name="ORDER_ID")
 	private int orderId;
 	
-	@JsonProperty("PRODUCT_ID")
 	@Column(name="PRODUCT_ID")
 	private int productId;
 	
-	@JsonProperty("ITEM_QUANTITY")
 	@Column(name="ITEM_QUANTITY")
 	private double itemQuantity;
 	
-	@JsonProperty("PRODUCT_PRICE")
 	@Column(name="PRODUCT_PRICE")
 	private double productPrice;
 	
+	@Column(name = "CREATED")
 	private Timestamp created;
+	
+	@Column(name = "MODIFIED")
 	private Timestamp modified;
 	
 	@Column(name="STATUS")

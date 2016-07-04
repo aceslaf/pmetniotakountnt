@@ -70,7 +70,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public void deleteEmployee(int userId) {
-
 		Employee employee = new Employee();
 		employee.setId(userId);
 		sessionFactory.getSession().beginTransaction();

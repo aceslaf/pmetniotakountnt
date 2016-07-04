@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.startsmart.model.dto.messagemodels.EmployeeMM;
+
 @Entity(name = "EMPLOYEES")
 @Cacheable(true)
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
@@ -39,11 +41,29 @@ public class Employee {
 	@Column(name = "EMPLOYEE_RIGHTS")
 	private long employeeRights;
 
+	@Column(name = "CREATED")
 	private Timestamp created;
-	private Timestamp updated;
+	
+	@Column(name = "MODIFIED")
+	private Timestamp modified;
 	
 	@Column(name = "STATUS")
 	private int employeeStatus;
+	
+	public Employee(EmployeeMM employee) {
+		this.id = employee.getId();
+		this.username = employee.getUsername();
+		this.password = employee.getPassword();
+		this.firstName = employee.getFirstName();
+		this.lastName = employee.getLastName();
+		this.roleId = employee.getRoleId();
+		this.employeeStatus = employee.getEmployeeStatus();
+		this.employeeRights = employee.getEmployeeRights();
+	}
+	
+	public Employee() {
+		
+	}
 
 	public int getId() {
 		return id;
@@ -118,10 +138,10 @@ public class Employee {
 	}
 
 	public Timestamp getUpdated() {
-		return updated;
+		return modified;
 	}
 
-	public void setUpdated(Timestamp updated) {
-		this.updated = updated;
+	public void setUpdated(Timestamp modified) {
+		this.modified = modified;
 	}
 }

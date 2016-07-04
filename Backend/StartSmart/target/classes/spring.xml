@@ -18,6 +18,7 @@
 		<security:csrf disabled="true"/>
 		<security:intercept-url pattern="/**"
 			access="permitAll" method="OPTIONS" />
+		<security:intercept-url pattern="/employee/create" access="permitAll" />
 		<security:intercept-url pattern="/help" access="permitAll" />
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 	</security:http>

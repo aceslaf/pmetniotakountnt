@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.startsmart.model.dao.daomanagers.EmployeeDao;
+import com.startsmart.model.dto.messagemodels.EmployeeMM;
 import com.startsmart.model.entities.Employee;
 
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,8 +26,9 @@ public class EmployeesController {
 
 	@RequestMapping(value = "/employee/create", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void createNewEmployee(@RequestBody Employee employee) {
-		employeeDao.createEmployee(employee);
+	public void createNewEmployee(@RequestBody EmployeeMM employee) {
+		Employee empl = new Employee(employee);
+		employeeDao.createEmployee(empl);
 	}
 
 	@RequestMapping(value = "/employee/{employeeId}", method = RequestMethod.GET)

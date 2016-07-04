@@ -18,30 +18,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Order {
 
-	@JsonProperty("ORDER_ID")
 	@Id
 	@GeneratedValue
 	@Column(name = "ORDER_ID")
 	private int orderId;
 
-	@JsonProperty("PAYMENT_TYPE")
 	@Column(name = "PAYMENT_TYPE")
 	private int paymentType;
 
-	@JsonProperty("EMPLOYEE_ID")
 	@Column(name = "EMPLOYEE_ID")
 	private int employeeId;
 
-	@JsonProperty("TOTAL_COST")
 	@Column(name = "TOTAL_COST")
 	private double totalCost;
 
-	@JsonProperty("ORDER_ITEMS")
 	@Column(name = "ORDER_ITEMS")
 	private OrderItem[] orderItems;
 
+	@Column(name = "CREATED")
 	private Timestamp created;
+	
+	@Column(name = "MODIFIED")
 	private Timestamp modified;
+	
+	@Column(name = "STATUS")
 	private int status;
 
 	public int getOrderId() {

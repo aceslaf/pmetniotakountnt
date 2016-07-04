@@ -1,0 +1,40 @@
+<header class="login-header"> Register new product </header>
+<main class="container-fluid has-header has-padding login-main-style">
+<form name="form" ng-submit="vm.registerProduct()" role="form" novalidate
+	class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 my-login-form">
+	<div class="form-group">
+		<label for="username">Name</label> <input type="text"
+			name="firstName" id="productName" class="form-control"
+			ng-model="product.productName" ng-bind-html="product.productName"
+			required />
+	</div>
+	<div class="form-group">
+		<label for="username">Price</label> <input type="text"
+			name="username" id="productPrice" class="form-control"
+			ng-model="product.productPrice" ng-bind-html="product.productPrice"
+			required />
+	</div>
+	<div class="form-group">
+		<label for="username">Weight</label> <input type="text"
+			name="username" id="productWeight" class="form-control"
+			ng-model="product.productWeight" ng-bind-html="product.productWeight"
+			required />
+	</div>
+	<div class="form-group">
+		<label for="username">Origin</label> <input type="password"
+			name="username" id="productOrigin" class="form-control"
+			ng-model="product.productOrigin" ng-bind-html="product.productOrigin"
+			required />
+	</div>
+	<div class="form-group">
+		<label for="username">Description</label> <input type="password"
+			name="username" id="productDescription" class="form-control"
+			ng-model="product.productDescription" ng-bind-html="product.productDescription"
+			required />
+	</div>
+	<div class="form-actions">
+		<button type="submit"
+			class="btn btn-primary btn-lg btn-login btn-block custom-button">Register product</button>
+	</div>
+</form>
+</main>

@@ -18,20 +18,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Role {
 
-	@JsonProperty("ROLE_ID")
 	@Id
 	@GeneratedValue
 	@Column(name = "ROLE_ID")
 	private int roleId;
 
-	@JsonProperty("ROLE_NAME")
 	@Column(name = "ROLE_NAME")
 	private String roleName;
 
-	@JsonProperty("ROLE_RIGHTS")
 	@Column(name = "ROLE_RIGHTS")
 	private long rights;
-	
 	
 	@Column(name="CREATED")
 	private Timestamp created;
@@ -39,7 +35,6 @@ public class Role {
 	@Column(name="MODIFIED")
 	private Timestamp modified;
 
-	@JsonProperty("STATUS")
 	@Column(name = "STATUS")
 	private int roleStatus;
 

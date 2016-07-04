@@ -47,8 +47,18 @@
 					requiresLogin: true
 				}
 			})
-			.when('/register', {
-				templateUrl: 'app/components/register/register.tmpl.html',
+			.when('/registerEmployee', {
+				templateUrl: 'app/components/registerEmployee/registerEmployee.tmpl.html',
+				controller: 'regEmployee.ctrl',
+				controllerAs: 'vm',
+				access: {
+					requiresLogin: false
+				}
+			})
+			.when('/registerProduct', {
+				templateUrl: 'app/components/registerProduct/registerProduct.tmpl.html',
+				controller: 'regProduct.ctrl',
+				controllerAs: 'vm',
 				access: {
 					requiresLogin: false
 				}

@@ -11,45 +11,59 @@ import javax.persistence.Id;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.startsmart.model.dto.messagemodels.ProductMM;
 
-@Entity
+@Entity(name = "PRODUCTS")
 @Cacheable(true)
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Product {
 
-	@JsonProperty("PRODUCT_ID")
 	@Id
 	@GeneratedValue
 	@Column(name = "PRODUCT_ID")
 	private int productId;
 
-	@JsonProperty("PRODUCT_NAME")
 	@Column(name = "PRODUCT_NAME")
 	private String productName;
 
-	@JsonProperty("PRODUCT_PRICE")
 	@Column(name = "PRODUCT_PRICE")
 	private int productPrice;
 
-	@JsonProperty("PRODUCT_WEIGHT")
 	@Column(name = "PRODUCT_WEIGHT")
 	private int productWeight;
 
-	@JsonProperty("PRODUCT_ORIGIN")
 	@Column(name = "PRODUCT_ORIGIN")
 	private String productOrigin;
 
-	@JsonProperty("PRODUCT_DESCRIPTION")
 	@Column(name = "PRODUCT_DESCRIPTION")
 	private String productDescription;
+	
+	@Column(name = "PRODUCT_TYPE")
+	private int productType;
 
+	@Column(name = "CREATED")
 	private Timestamp create;
+	
+	@Column(name = "MODIFIED")
 	private Timestamp modified;
 
-	@JsonProperty("PRODUCT_STATUS")
 	@Column(name = "PRODUCT_STATUS")
 	private int productStatus;
+	
+	public Product() {
+		
+	}
+	
+	public Product(ProductMM messageModel) {
+		this.productId = messageModel.getProductId();
+		this.productName = messageModel.getProductName();
+		this.productPrice = messageModel.getProductPrice();
+		this.productWeight = messageModel.getProductWeight();
+		this.productOrigin = messageModel.getProductOrigin();
+		this.productDescription = messageModel.getProductDescription();
+		this.productType = messageModel.getProductType();
+		this.productStatus = messageModel.getProductStatus();
+	}
 
 	public int getProductId() {
 		return productId;
@@ -121,5 +135,13 @@ public class Product {
 
 	public void setModified(Timestamp modified) {
 		this.modified = modified;
+	}
+
+	public int getProductType() {
+		return productType;
+	}
+
+	public void setProductType(int productType) {
+		this.productType = productType;
 	}
 }

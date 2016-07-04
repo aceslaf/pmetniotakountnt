@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProductMM {
-
+	
 	@JsonProperty("productId")
 	private int productId;
 
@@ -23,9 +23,14 @@ public class ProductMM {
 
 	@JsonProperty("productDescription")
 	private String productDescription;
+	
+	@JsonProperty("productType")
+	private int productType;
 
 	private Timestamp create;
 	private Timestamp modified;
+	
+	@JsonProperty("productStatus")
 	private int productStatus;
 
 	public int getProductId() {
@@ -98,5 +103,13 @@ public class ProductMM {
 
 	public void setModified(Timestamp modified) {
 		this.modified = modified;
+	}
+
+	public int getProductType() {
+		return productType;
+	}
+
+	public void setProductType(int productType) {
+		this.productType = productType;
 	}
 }

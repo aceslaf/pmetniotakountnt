@@ -23,7 +23,7 @@
 		}
 		
 		function register() {
-			$location.path("/register");
+			$location.path("/registerEmployee");
 		}
 	}
 })();
