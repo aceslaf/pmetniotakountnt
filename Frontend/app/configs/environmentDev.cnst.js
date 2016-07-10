@@ -5,7 +5,7 @@
         .constant('environment.cnst', getEnvironmentConstants());
 
     function getEnvironmentConstants() {
-        var backendLocation = '192.168.1.122:8080/StartSmart';
+        var backendLocation = '192.168.0.101:8080/StartSmart';
         // TODO: Change this address to real host
 
         return {

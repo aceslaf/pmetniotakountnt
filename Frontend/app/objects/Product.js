@@ -14,7 +14,10 @@
 				name : product.name,
 				price : product.price,
 				weight : product.weight,
-				origin : product.origin
+				origin : product.origin,
+				description : product.description,
+				type : product.type,
+				thumbnail : product.thumbnail
 			});
 		};
 		
@@ -28,10 +31,16 @@
 			getWeight : getWeight,
 			setWeight : setWeight,
 			getOrigin : getOrigin,
-			setOrigin : setOrigin
+			setOrigin : setOrigin,
+			getDescription : getDescription,
+			setDescription : setDescription,
+			getType : getType,
+			setType : setType,
+			getThumbnail : getThumbnail,
+			setThumbnail : setThumbnail
 		});
 		
-		return Prodict;
+		return Product;
 		
 		function getId() {
 			return id;
@@ -63,6 +72,38 @@
 		
 		function setWeight(weight) {
 			this.weight = weight;
+		}
+		
+		function getOrigin() {
+			return origin;
+		}
+		
+		function setOrigin(origin) {
+			this.origin = origin;
+		}
+		
+		function getDescription() {
+			return description;
+		}
+		
+		function setDescription(description) {
+			this.description = description;
+		}
+		
+		function getType() {
+			return type;
+		}
+		
+		function setType(type) {
+			this.type = type;
+		}
+		
+		function getThumbnail() {
+			return thumbnail;
+		}
+		
+		function setThumbnail(thumbnail) {
+			this.thumbnail = thumbnail;
 		}
 	}
 })();

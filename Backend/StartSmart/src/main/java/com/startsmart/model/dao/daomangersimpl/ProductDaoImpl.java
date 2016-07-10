@@ -1,11 +1,14 @@
 package com.startsmart.model.dao.daomangersimpl;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.startsmart.model.dao.daomanagers.ProductDao;
+import com.startsmart.model.dto.messagemodels.ProductMM;
 import com.startsmart.model.entities.Product;
 import com.startsmart.model.hibernate.StartSmartSessionFactory;
 
@@ -17,11 +20,14 @@ public class ProductDaoImpl implements ProductDao {
 	private StartSmartSessionFactory sessionFactory;
 
 	@Override
-	public Integer createProduct(Product product) {
+	public Product createProduct(ProductMM productMM) {
+		Product productEntity = new Product(productMM);
+		productEntity.setCreate(new Timestamp(new Date().getTime()));
+		productEntity.setModified(new Timestamp(new Date().getTime()));
 		sessionFactory.getSession().beginTransaction();
-		sessionFactory.getSession().save(product);
+		sessionFactory.getSession().save(productEntity);
 		sessionFactory.getSession().getTransaction().commit();
-		return product.getProductId();
+		return productEntity;
 	}
 
 	@Override
@@ -54,16 +60,17 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public void updateProduct(Product product) {
+	public void updateProduct(ProductMM productMM) {
+		Product product = new Product(productMM); 
 		sessionFactory.getSession().beginTransaction();
 		sessionFactory.getSession().update(product);
 		sessionFactory.getSession().getTransaction().commit();
 	}
 
 	@Override
-	public void deleteProduct(int productId) {
+	public void deleteProduct(int id) {
 		Product product = new Product();
-		product.setProductId(productId);
+		product.setId(id);
 		sessionFactory.getSession().beginTransaction();
 		sessionFactory.getSession().delete(product);
 		sessionFactory.getSession().getTransaction().commit();

@@ -25,17 +25,14 @@ public class ProductsController {
 	@RequestMapping(value = "/product/create", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public Integer createProduct(@RequestBody ProductMM product) {
-		Product prod = new Product(product);
-		return productDao.createProduct(prod);
+	public Product createProduct(@RequestBody ProductMM product) {
+		return productDao.createProduct(product);
 	}
 
 	@RequestMapping(value = "/product/{productId}", method = RequestMethod.GET)
 	@ResponseBody
 	public Product getProductById(@PathVariable int productId) {
-		final Product product;
-		product = productDao.getProductById(productId);
-		return product;
+		return productDao.getProductById(productId);
 	}
 
 	@RequestMapping(value = "/product/all", method = RequestMethod.GET)
@@ -56,7 +53,7 @@ public class ProductsController {
 
 	@RequestMapping(value = "/product/update", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void updateProduct(@RequestBody Product product) {
+	public void updateProduct(@RequestBody ProductMM product) {
 		productDao.updateProduct(product);
 	}
 

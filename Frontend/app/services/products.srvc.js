@@ -9,7 +9,7 @@
 	];
 	
 	function productsSrvc(Product) {
-		var product;
+		var products = [];
 		
 		var service = {
 				getAllProducts : getAllProducts,
@@ -21,19 +21,19 @@
 		return service;
 		
 		function getAllProducts() {
-			
+			return products;
 		}
 		
-		function setAllProduct() {
-			
+		function setAllProducts(products) {
+			this.products = products;
 		}
 		
-		function addProduct() {
-			
+		function addProduct(product) {
+			products.push(product);
 		}
 		
-		function getProductById() {
-			
+		function getProductById(id) {
+			//TODO implement this later
 		}
 	}
 })();

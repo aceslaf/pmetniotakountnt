@@ -5,96 +5,101 @@ import java.sql.Timestamp;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProductMM {
+
+	@JsonProperty("id")
+	private int id;
+
+	@JsonProperty("name")
+	private String name;
+
+	@JsonProperty("price")
+	private int price;
+
+	@JsonProperty("weight")
+	private int weight;
+
+	@JsonProperty("origin")
+	private String origin;
+
+	@JsonProperty("description")
+	private String description;
+
+	@JsonProperty("type")
+	private int type;
 	
-	@JsonProperty("productId")
-	private int productId;
+	@JsonProperty("status")
+	private int status;
 
-	@JsonProperty("productName")
-	private String productName;
+	@JsonProperty("thumbnail")
+	private String thumbnail;
 
-	@JsonProperty("productPrice")
-	private int productPrice;
-
-	@JsonProperty("productWeight")
-	private int productWeight;
-
-	@JsonProperty("productOrigin")
-	private String productOrigin;
-
-	@JsonProperty("productDescription")
-	private String productDescription;
-	
-	@JsonProperty("productType")
-	private int productType;
-
-	private Timestamp create;
+	private Timestamp created;
 	private Timestamp modified;
+
 	
-	@JsonProperty("productStatus")
-	private int productStatus;
 
-	public int getProductId() {
-		return productId;
+	public int getId() {
+		return id;
 	}
 
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getProductPrice() {
-		return productPrice;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setProductPrice(int productPrice) {
-		this.productPrice = productPrice;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
-	public String getProductOrigin() {
-		return productOrigin;
+	public String getOrigin() {
+		return origin;
 	}
 
-	public void setProductOrigin(String productDealer) {
-		this.productOrigin = productDealer;
+	public void setOrigin(String origin) {
+		this.origin = origin;
 	}
 
-	public String getProductDescription() {
-		return productDescription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public int getProductStatus() {
-		return productStatus;
+	public int getStatus() {
+		return status;
 	}
 
-	public void setProductStatus(int productStatus) {
-		this.productStatus = productStatus;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
-	public int getProductWeight() {
-		return productWeight;
+	public int getWeight() {
+		return weight;
 	}
 
-	public void setProductWeight(int productWeight) {
-		this.productWeight = productWeight;
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
 	public Timestamp getCreate() {
-		return create;
+		return created;
 	}
 
-	public void setCreate(Timestamp create) {
-		this.create = create;
+	public void setCreate(Timestamp created) {
+		this.created = created;
 	}
 
 	public Timestamp getModified() {
@@ -105,11 +110,27 @@ public class ProductMM {
 		this.modified = modified;
 	}
 
-	public int getProductType() {
-		return productType;
+	public int getType() {
+		return type;
 	}
 
-	public void setProductType(int productType) {
-		this.productType = productType;
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public Timestamp getCreated() {
+		return created;
+	}
+
+	public void setCreated(Timestamp created) {
+		this.created = created;
 	}
 }

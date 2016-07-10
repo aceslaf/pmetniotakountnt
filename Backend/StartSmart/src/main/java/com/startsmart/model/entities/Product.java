@@ -20,26 +20,32 @@ public class Product {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "PRODUCT_ID")
-	private int productId;
+	@Column(name = "ID")
+	private int id;
 
-	@Column(name = "PRODUCT_NAME")
-	private String productName;
+	@Column(name = "NAME")
+	private String name;
 
-	@Column(name = "PRODUCT_PRICE")
-	private int productPrice;
+	@Column(name = "PRICE")
+	private int price;
 
-	@Column(name = "PRODUCT_WEIGHT")
-	private int productWeight;
+	@Column(name = "WEIGHT")
+	private int weight;
 
-	@Column(name = "PRODUCT_ORIGIN")
-	private String productOrigin;
+	@Column(name = "ORIGIN")
+	private String origin;
 
-	@Column(name = "PRODUCT_DESCRIPTION")
-	private String productDescription;
+	@Column(name = "DESCRIPTION")
+	private String description;
 	
-	@Column(name = "PRODUCT_TYPE")
-	private int productType;
+	@Column(name = "TYPE")
+	private int type;
+	
+	@Column(name = "STATUS")
+	private int status;
+	
+	@Column(name = "THUMBNAIL")
+	private String thumbnail;
 
 	@Column(name = "CREATED")
 	private Timestamp create;
@@ -47,78 +53,94 @@ public class Product {
 	@Column(name = "MODIFIED")
 	private Timestamp modified;
 
-	@Column(name = "PRODUCT_STATUS")
-	private int productStatus;
+	
 	
 	public Product() {
 		
 	}
 	
 	public Product(ProductMM messageModel) {
-		this.productId = messageModel.getProductId();
-		this.productName = messageModel.getProductName();
-		this.productPrice = messageModel.getProductPrice();
-		this.productWeight = messageModel.getProductWeight();
-		this.productOrigin = messageModel.getProductOrigin();
-		this.productDescription = messageModel.getProductDescription();
-		this.productType = messageModel.getProductType();
-		this.productStatus = messageModel.getProductStatus();
+		this.id = messageModel.getId();
+		this.name = messageModel.getName();
+		this.price = messageModel.getPrice();
+		this.weight = messageModel.getWeight();
+		this.origin = messageModel.getOrigin();
+		this.description = messageModel.getDescription();
+		this.type = messageModel.getType();
+		this.status = messageModel.getStatus();
+		this.thumbnail = messageModel.getThumbnail();
 	}
 
-	public int getProductId() {
-		return productId;
+	public int getId() {
+		return id;
 	}
 
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getProductPrice() {
-		return productPrice;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setProductPrice(int productPrice) {
-		this.productPrice = productPrice;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
-	public String getProductOrigin() {
-		return productOrigin;
+	public int getWeight() {
+		return weight;
 	}
 
-	public void setProductOrigin(String productDealer) {
-		this.productOrigin = productDealer;
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
-	public String getProductDescription() {
-		return productDescription;
+	public String getOrigin() {
+		return origin;
 	}
 
-	public void setProductDescription(String productDescription) {
-		this.productDescription = productDescription;
+	public void setOrigin(String origin) {
+		this.origin = origin;
 	}
 
-	public int getProductStatus() {
-		return productStatus;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setProductStatus(int productStatus) {
-		this.productStatus = productStatus;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public int getProductWeight() {
-		return productWeight;
+	public int getType() {
+		return type;
 	}
 
-	public void setProductWeight(int productWeight) {
-		this.productWeight = productWeight;
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public Timestamp getCreate() {
@@ -137,11 +159,4 @@ public class Product {
 		this.modified = modified;
 	}
 
-	public int getProductType() {
-		return productType;
-	}
-
-	public void setProductType(int productType) {
-		this.productType = productType;
-	}
 }

@@ -6,8 +6,6 @@
 	
 	user.$inject = [];
 	
-	
-	
 	function user() {
 		
 		var User = function User(options) {

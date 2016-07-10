@@ -4,10 +4,10 @@
 			registerProductSrvc);
 
 	registerProductSrvc.$inject = [ '$location', '$http',
-			'protocolResolver.srvc', 'users.srvc' ];
+			'protocolResolver.srvc', 'users.srvc', 'products.srvc' ];
 
 	function registerProductSrvc($location, $http, protocolResolverSrvc,
-			usersSrvc) {
+			usersSrvc, productsSrvc) {
 
 		var service = {
 			registerProduct : registerProduct
@@ -30,26 +30,12 @@
 					
 			};
 			$http(request).then(onSuccess, onFailure);
-			
-			/*
-			var auth = {
-				authorization : "Basic "
-						+ window.btoa(usersSrvc.getLocalUser().username + ":"
-								+ usersSrvc.getLocalUser().password)
-			};
-			$http.post(
-					protocolResolverSrvc.getBackendRestApiUrl()
-							+ '/product/create', product, auth).then(onSuccess,
-					onFailure);*/
 		}
 
 		function onSuccess(response) {
-			var user = response.data;
-			var localUser;
-			if (angular.isDefined(user)) {
-				localUser = user;
-				usersSrvc.setLocalUser(user);
-
+			var product = response.data;
+			if (angular.isDefined(product)) {
+				//productsSrvc.addProduct(product);
 			}
 			$location.path("/homepage");
 		}

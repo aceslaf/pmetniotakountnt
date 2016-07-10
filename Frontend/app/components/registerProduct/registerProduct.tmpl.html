@@ -3,33 +3,45 @@
 <form name="form" ng-submit="vm.registerProduct()" role="form" novalidate
 	class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 my-login-form">
 	<div class="form-group">
-		<label for="username">Name</label> <input type="text"
-			name="firstName" id="productName" class="form-control"
-			ng-model="product.productName" ng-bind-html="product.productName"
+		<label for="name">Name</label> <input type="text"
+			name="name" id="productName" class="form-control"
+			ng-model="product.name" ng-bind-html="product.name"
 			required />
 	</div>
 	<div class="form-group">
-		<label for="username">Price</label> <input type="text"
-			name="username" id="productPrice" class="form-control"
-			ng-model="product.productPrice" ng-bind-html="product.productPrice"
+		<label for="price">Price</label> <input type="text"
+			name="price" id="productPrice" class="form-control"
+			ng-model="product.price" ng-bind-html="product.price"
 			required />
 	</div>
 	<div class="form-group">
-		<label for="username">Weight</label> <input type="text"
-			name="username" id="productWeight" class="form-control"
-			ng-model="product.productWeight" ng-bind-html="product.productWeight"
+		<label for="weight">Weight</label> <input type="text"
+			name="weight" id="productWeight" class="form-control"
+			ng-model="product.weight" ng-bind-html="product.weight"
 			required />
 	</div>
 	<div class="form-group">
-		<label for="username">Origin</label> <input type="password"
-			name="username" id="productOrigin" class="form-control"
-			ng-model="product.productOrigin" ng-bind-html="product.productOrigin"
+		<label for="origin">Origin</label> <input type="text"
+			name="origin" id="productOrigin" class="form-control"
+			ng-model="product.origin" ng-bind-html="product.origin"
 			required />
 	</div>
 	<div class="form-group">
-		<label for="username">Description</label> <input type="password"
-			name="username" id="productDescription" class="form-control"
-			ng-model="product.productDescription" ng-bind-html="product.productDescription"
+		<label for="description">Description</label> <input type="text"
+			name="description" id="productDescription" class="form-control"
+			ng-model="product.description" ng-bind-html="product.description"
+			required />
+	</div>
+	<div class="form-group">
+		<label for="type">Type</label> <input type="text"
+			name="type" id="productType" class="form-control"
+			ng-model="product.type" ng-bind-html="product.type"
+			required />
+	</div>
+	<div class="form-group">
+		<label for="thumbnail">Thumbnail</label> <input type="text"
+			name="thumbnail" id="productThumbnail" class="form-control"
+			ng-model="product.thumbnail" ng-bind-html="product.thumbnail"
 			required />
 	</div>
 	<div class="form-actions">
